@@ -104,6 +104,8 @@ CRp.drawEdgePath = function( edge, context, pts, type ){
   let path;
   let pathCacheHit = false;
   let usePaths = this.usePaths();
+  let lineDashOffset = edge.pstyle('line-dash-offset').value;
+  let dashStyle = edge.pstyle('dash-style').pfValue;
 
   if( usePaths ){
     let pathCacheKey = pts.join( '$' );
@@ -126,7 +128,8 @@ CRp.drawEdgePath = function( edge, context, pts, type ){
         break;
 
       case 'dashed':
-        canvasCxt.setLineDash( [ 6, 3 ] );
+        canvasCxt.setLineDash( dashStyle );
+        canvasCxt.lineDashOffset = lineDashOffset;
         break;
 
       case 'solid':

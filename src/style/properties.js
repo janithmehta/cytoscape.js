@@ -34,6 +34,8 @@ let styfn = {};
     numbers: { number: true, unitless: true, multiple: true },
     positiveNumber: { number: true, unitless: true, min: 0, strictMin: true },
     size: { number: true, min: 0 },
+    dashStyle: { number: true, min: 0, multiple: true },
+    lineDashOffset: { number: true },
     bidirectionalSize: { number: true }, // allows negative
     bidirectionalSizes: { number: true, multiple: true }, // allows negative
     sizeMaybePercent: { number: true, min: 0, allowPercent: true },
@@ -265,6 +267,8 @@ let styfn = {};
     { name: 'loop-sweep', type: t.angle },
     { name: 'source-distance-from-node', type: t.size },
     { name: 'target-distance-from-node', type: t.size },
+    { name: 'dash-style', type: t.dashStyle },
+    { name: 'line-dash-offset', type: t.lineDashOffset },
 
     // ghost properties
     { name: 'ghost', type: t.bool },
@@ -484,7 +488,9 @@ styfn.getDefaultProperties = util.memoize( function(){
     'source-distance-from-node': 0,
     'target-distance-from-node': 0,
     'source-endpoint': 'outside-to-node',
-    'target-endpoint': 'outside-to-node'
+    'target-endpoint': 'outside-to-node',
+    'dash-style': [6, 3],
+    'line-dash-offset': 0,
   }, [
     { name: 'arrow-shape', value: 'none' },
     { name: 'arrow-color', value: '#999' },
